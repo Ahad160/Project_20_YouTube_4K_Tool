@@ -3,27 +3,6 @@ from tkinter import ttk
 from yt_dlp import YoutubeDL
 
 
-def YouTube_Download_Module(Url):
-    Video_Settings= {
-        'format': 'bestvideo[height<=720]',
-        # 'format': 'bestvideo[height<=2160]+bestaudio/best[height<=2160]',
-
-
-        'outtmpl': r'4K-V.%(ext)s',
-    }
-    with YoutubeDL(Video_Settings) as ydl:
-        ydl.download([Url])
-
-def Download_Event():
-    User_URL=entry.get()
-    YouTube_Download_Module(User_URL)
-    # Main label with extra bottom padding
-    label = ttk.Label(root, text="Patience, The Video is Downloading...",foreground="#ff8000")
-    label.pack(padx=20, pady=(20,20))  # Reduces bottom padding on the label
-
-    # Main label with extra bottom padding
-    label = ttk.Label(root, text="Download Completed!",foreground="#006400")
-    label.pack(padx=20, pady=(10,20))  # Reduces bottom padding on the label
 
 
 #               ---GUI MODE---
@@ -52,8 +31,17 @@ entry.pack(padx=20, pady=(10, 20))  # Adds top padding on the entry box
 
 
 # Apply the style to the button
-accent_button = ttk.Button(root, text="Download", style='Accent.TButton',command=Download_Event)
+accent_button = ttk.Button(root, text="Download", style='Accent.TButton',)
 accent_button.pack(padx=20, pady=(10, 20))
+
+
+# Main label with extra bottom padding
+label = ttk.Label(root, text="Patience, The Video is Downloading...",foreground="#ff8000")
+label.pack(padx=20, pady=(20,20))  # Reduces bottom padding on the label
+
+# Main label with extra bottom padding
+label = ttk.Label(root, text="Download Completed!",foreground="#006400")
+label.pack(padx=20, pady=(10,20))  # Reduces bottom padding on the label
 
 
 # Run the application
