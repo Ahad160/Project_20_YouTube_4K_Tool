@@ -4,7 +4,6 @@ from yt_dlp import YoutubeDL
 
 
 
-
 #               ---GUI MODE---
 # Initialize the main application window
 root = tk.Tk()
@@ -44,18 +43,26 @@ label = ttk.Label(root, text="Download Completed!",foreground="#006400")
 label.grid(padx=20, pady=(0,0))  # Reduces bottom padding on the label
 
 
+def On(selected_option):
+    # global picked_option  # Declare the variable as global
+    picked_option = selected_option
+    # Main label with extra bottom padding
+ 
+
+
 # Define a frame for the OptionMenu
 frame = ttk.Frame(root, padding=(20, 10))
 frame.grid(row=6, column=0, padx=20, pady=20, sticky="nsew")
 
+
 # Create a list of options
-option_menu_list = ["", "Option 1", "Option 2", "Option 3"]
+option_menu_list = ["", "2160p (4K)", "1440p (2K)", "1080p (HD)","720p", "480p", "360p","240p","144p"]
 
 # Create a StringVar to hold the selected value
 selected_option = tk.StringVar(value=option_menu_list[1])
 
 # Create the OptionMenu widget
-optionmenu = ttk.OptionMenu(frame, selected_option, *option_menu_list)
+optionmenu = ttk.OptionMenu(frame, selected_option, *option_menu_list,command=On)
 optionmenu.grid(row=0, column=0, padx=50, pady=0, sticky="nsew")
 
 
