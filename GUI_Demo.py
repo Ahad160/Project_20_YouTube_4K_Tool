@@ -8,6 +8,8 @@ from yt_dlp import YoutubeDL
 # Initialize the main application window
 root = tk.Tk()
 root.title("4K Videos")
+root.geometry("500x400")
+
 
 # Load the Azure theme
 try:
@@ -64,6 +66,27 @@ selected_option = tk.StringVar(value=option_menu_list[1])
 # Create the OptionMenu widget
 optionmenu = ttk.OptionMenu(frame, selected_option, *option_menu_list,command=On)
 optionmenu.grid(row=0, column=0, padx=50, pady=0, sticky="nsew")
+
+#---------------------------------------------------------------------
+def checkbutton_callback(var):
+    if var.get():
+        # Checkbutton is checked
+        label.config(text="Checkbutton is checked")
+    else:
+        # Checkbutton is unchecked
+        label.config(text="Checkbutton is unchecked")
+
+# Create BooleanVars to track the state of each Checkbutton
+var_0 = tk.BooleanVar(value=False)
+var_1 = tk.BooleanVar(value=True)
+
+# Create Checkbuttons
+check_1 = ttk.Checkbutton(frame, text="Audio", variable=var_1, command=lambda: checkbutton_callback(var_0))
+check_1.grid(row=0, column=5, padx=5, pady=10, sticky="nsew")
+
+# Create a label to display the status
+label = ttk.Label(frame, text="")
+label.grid(row=1, column=0, padx=5, pady=10, sticky="nsew")
 
 
 
