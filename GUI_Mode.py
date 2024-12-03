@@ -4,31 +4,45 @@ from yt_dlp import YoutubeDL
 from tkinter import filedialog
 
 
+#⭕ Video Download Operations
 def YouTube_Download_Module(Url):
+    User_Path=target_folder_entry.get()
+    
     Video_Settings= {
         'format': f'bestvideo[height<={selected_option.get()}]+bestaudio/best[height<=2160]',
 
         # 'format': 'bestvideo[height<=2160]+bestaudio/best[height<=2160]',
 
-        'outtmpl': r'4K-V.%(ext)s',
+        'outtmpl': rf'{User_Path}\4K-V.%(ext)s',
     }
     with YoutubeDL(Video_Settings) as ydl:
         ydl.download([Url])
 
-
+#⭕ Video Download Function
 def Download_Event():
     
-    User_URL=entry.get()
+    User_URL=Link_Box.get()
     YouTube_Download_Module(User_URL)
-    # Main label with extra bottom padding
-    label = ttk.Label(root, text="Patience, The Video is Downloading...",foreground="#ff8000")
-    label.grid(row=0, column=0,padx=0, pady=(0,0))  # Reduces bottom padding on the label
+
+    #⭕ Tab Design 2
+    notebook = ttk.Notebook(root, padding=(2,5))
+    notebook.grid(row=5, column=0, sticky='w')
+    #⚪ Tab 2
+    tab_3 = ttk.Frame(notebook)
+    notebook.add(tab_3, text="Console")
+
+    #⭕ Console Box Text 1
+    label = ttk.Label(tab_3, text="Patience, Video is Downloading...",foreground="#ff8000",font=("-size", 10))
+    label.grid(padx=(0,0), pady=(0,0))  # Reduces bottom padding on the label
+
+    #⭕ Console Box Text 2
+    label = ttk.Label(tab_3, text="Download Completed!",foreground="#8cc63f",font=("-size", 12, "-weight", "bold"))
+    label.grid(padx=(0,0), pady=(0,0),sticky='w')  # Reduces bottom padding on the label
+
     #Padx left-Right
     #pady up-down
 
-    # Main label with extra bottom padding
-    label = ttk.Label(root, text="Download Completed!",foreground="#006400")
-    label.grid(row=0, column=0,padx=0, pady=(0,0))  # Reduces bottom padding on the label
+   
 
 #⭕ Audio Checkbuttons Function
 def checkbutton_callback(var):
@@ -39,31 +53,31 @@ def checkbutton_callback(var):
         # Checkbutton is unchecked
         label.config(text="Checkbutton is unchecked")
 
+#⭕ Targeted Folder Path Function
 def browse_folder():
     selected_folder = filedialog.askdirectory()
     target_folder_entry.delete(0, tk.END)
-    target_folder_entry.insert(0, selected_folder)     
-        
+    target_folder_entry.insert(0, selected_folder)
+    
 
-#               ---GUI MODE---
 # Initialize the main application window
 root = tk.Tk()
 root.title("YouTube 4K Tool")
-root.geometry("570x305")
+root.geometry("570x255")
 
 # Load the Azure theme
 try:
     root.tk.call("source", r"E:\Codeing\Python Language\Projects\Project_20_YouTube_4K_Tool\Theme\azure.tcl")  # Replace with the correct path to azure.tcl
-    root.tk.call("set_theme", "light")  # Use "dark" for dark mode
+    root.tk.call("set_theme", "dark")  # Use "dark" for dark mode
 except tk.TclError:
     print("Azure theme file not found. Please check the path to 'azure.tcl'.")
 
 #⭕ Link Box
-entry = ttk.Entry(root, width=50)
-entry.grid(row=0, column=0, padx=0, pady=(2,5))
+Link_Box = ttk.Entry(root, width=50)
+Link_Box.grid(row=0, column=0, padx=(2,0), pady=(1,5))
 
 #⭕ Tab Design
-notebook = ttk.Notebook(root, padding=(0, 0))
+notebook = ttk.Notebook(root, padding=(2, 0))
 notebook.grid(row=1, column=0, sticky='w')
 #⚪ Tab
 tab_2 = ttk.Frame(notebook)
@@ -87,8 +101,8 @@ var_1 = tk.BooleanVar(value=True)
 check_1 = ttk.Checkbutton(tab_2, text="Audio", variable=var_1, command=lambda: checkbutton_callback(var_0))
 check_1.grid(row=3, column=2, padx=(20,0), pady=(0,0), sticky="w")
 
-#⭕ Targeted Folder Box
-predefined_path = "C:/Users/YourUserName/Downloads"
+#⭕ Targeted Folder Path Box
+predefined_path = "C:/Users/PRO GADEGT/Downloads"
 # Target Folder Entry with pre-defined path
 target_folder_entry = ttk.Entry(root, width=50)
 target_folder_entry.insert(0, predefined_path)
@@ -101,6 +115,9 @@ browse_button.grid(row=4, column=2, padx=(5,0), pady=(5,0), sticky="w")
 #⭕ Download Button
 accent_button = ttk.Button(root, text="Download", style='Accent.TButton',command=Download_Event)
 accent_button.grid(row=4, column=3, padx=(5,0), pady=(5,0), sticky="w")
+
+
+
 
 
 
