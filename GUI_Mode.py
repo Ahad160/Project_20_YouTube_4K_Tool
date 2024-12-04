@@ -9,7 +9,7 @@ def YouTube_Download_Module(Url):
     User_Path=target_folder_entry.get()
     
     Video_Settings= {
-        'format': f'bestvideo[height<={selected_option.get()}]+bestaudio/best[height<=2160]',
+        'format': f'bestvideo[height<={selected_option.get().split(" ")[0].replace("p", "")}]+bestaudio/best[height<={selected_option.get().split(" ")[0].replace("p", "")}]',
 
         # 'format': 'bestvideo[height<=2160]+bestaudio/best[height<=2160]',
 
@@ -89,7 +89,7 @@ label.grid(row=2, column=0,padx=(0,0), pady=(0,1), sticky='w')
 #⭕ OptionMenu
 frame = ttk.Frame(tab_2, padding=(0, 0))
 frame.grid(row=3, column=0, padx=(0,0), pady=(0,0), sticky="w")
-option_menu_list = ["", "2160p (4K)", "1440p (2K)", "1080P","720p", "480p", "360p","240p","144p"]
+option_menu_list = ["", "2160p (4K)", "1440p (2K)", "1080P (HD)","720p", "480p", "360p","240p","144p"]
 selected_option = tk.StringVar(value=option_menu_list[1])
 optionmenu = ttk.OptionMenu(frame, selected_option, *option_menu_list)
 optionmenu.grid(row=2, column=0, padx=(0,0), pady=0, sticky="w")
@@ -115,10 +115,6 @@ browse_button.grid(row=4, column=2, padx=(5,0), pady=(5,0), sticky="w")
 #⭕ Download Button
 accent_button = ttk.Button(root, text="Download", style='Accent.TButton',command=Download_Event)
 accent_button.grid(row=4, column=3, padx=(5,0), pady=(5,0), sticky="w")
-
-
-
-
 
 
 # Run the application
