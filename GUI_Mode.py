@@ -7,12 +7,13 @@ from tkinter import filedialog
 #⭕ Video Download Operations
 def YouTube_Download_Module(Url):
     User_Path=target_folder_entry.get()
-    
-    Video_Settings= {
-        'format': f'bestvideo[height<={selected_option.get().split(" ")[0].replace("p", "")}]+bestaudio/best[height<={selected_option.get().split(" ")[0].replace("p", "")}]',
 
-        # 'format': 'bestvideo[height<=2160]+bestaudio/best[height<=2160]',
-
+    Video_Settings = {
+        'format': (
+            f'bestvideo[height<={selected_option.get().split(" ")[0].replace("p", "")}]+bestaudio/best[height<={selected_option.get().split(" ")[0].replace("p", "")}]'
+            if globals().get("Audio_Option", True) else
+            f'bestvideo[height<={selected_option.get().split(" ")[0].replace("p", "")}]'
+        ),
         'outtmpl': rf'{User_Path}\4K-V.%(ext)s',
     }
     with YoutubeDL(Video_Settings) as ydl:
@@ -42,16 +43,18 @@ def Download_Event():
     #Padx left-Right
     #pady up-down
 
-   
 
 #⭕ Audio Checkbuttons Function
 def checkbutton_callback(var):
+    global Audio_Option
+
     if var.get():
         # Checkbutton is checked
-        label.config(text="Checkbutton is checked")
+        Audio_Option=True
     else:
         # Checkbutton is unchecked
-        label.config(text="Checkbutton is unchecked")
+        Audio_Option=False
+
 
 #⭕ Targeted Folder Path Function
 def browse_folder():
@@ -98,7 +101,7 @@ optionmenu.grid(row=2, column=0, padx=(0,0), pady=0, sticky="w")
 var_0 = tk.BooleanVar(value=False)
 var_1 = tk.BooleanVar(value=True)
 #⭕ Audio Checkbuttons
-check_1 = ttk.Checkbutton(tab_2, text="Audio", variable=var_1, command=lambda: checkbutton_callback(var_0))
+check_1 = ttk.Checkbutton(tab_2, text="Audio", variable=var_1, command=lambda: checkbutton_callback(var_1))
 check_1.grid(row=3, column=2, padx=(20,0), pady=(0,0), sticky="w")
 
 #⭕ Targeted Folder Path Box

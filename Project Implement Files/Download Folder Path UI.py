@@ -22,4 +22,7 @@ target_folder_entry.grid(row=0, column=0, padx=10, pady=10)
 browse_button = ttk.Button(root, text="Browse", command=browse_folder)
 browse_button.grid(row=0, column=1, padx=10, pady=10)
 
+label = ttk.Label(root, text="Patience, Video is Downloading...",foreground="#ff8000",font=("-size", 10))
+label.grid(padx=(0,0), pady=(0,0))  # Reduces bottom padding on the label
+
 root.mainloop()
