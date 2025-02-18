@@ -89,6 +89,26 @@ label = ttk.Label(frame, text="")
 label.grid(row=1, column=0, padx=5, pady=10, sticky="nsew")
 
 
+# Input field
+entry = ttk.Entry(root, width=40)
+entry.pack(pady=10)
+entry.insert(0, "Enter YouTube Link Here")
+
+# Buttons
+preview_btn = ttk.Button(root, text="Preview Thumbnail", )
+preview_btn.pack(pady=5)
+
+download_btn = ttk.Button(root, text="Download Thumbnail", )
+download_btn.pack(pady=5)
+
+# Thumbnail display
+img_label = tk.Label(root)
+img_label.pack()
+
+# Status label
+status_label = tk.Label(root, text="", font=("Arial", 10))
+status_label.pack(pady=5)
+
 
 # Run the application
 root.mainloop()
