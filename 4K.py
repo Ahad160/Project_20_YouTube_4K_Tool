@@ -119,12 +119,11 @@ def browse_folder():
 root = tk.Tk()
 root.title("YouTube 4K Tool")
 root.geometry("570x260")
-root.iconbitmap(r"E:\Codeing\Python Language\Projects\Project_20_YouTube_4K_Tool\YouTube_4K_Tool.ico")  # Replace with your icon path
-
+root.iconbitmap(r"icon.ico")
 
 # Load the Azure theme
 try:
-    root.tk.call("source", r"E:\Codeing\Python Language\Projects\Project_20_YouTube_4K_Tool\Theme\azure.tcl")  # Replace with the correct path to azure.tcl
+    root.tk.call("source",r"Theme\azure.tcl") 
     root.tk.call("set_theme", "dark")  # Use "dark" for dark mode
 except tk.TclError:
     print("Azure theme file not found. Please check the path to 'azure.tcl'.")
