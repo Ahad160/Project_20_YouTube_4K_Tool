@@ -119,6 +119,8 @@ def browse_folder():
 root = tk.Tk()
 root.title("YouTube 4K Tool")
 root.geometry("570x260")
+root.iconbitmap(r"E:\Codeing\Python Language\Projects\Project_20_YouTube_4K_Tool\YouTube_4K_Tool.ico")  # Replace with your icon path
+
 
 # Load the Azure theme
 try:
